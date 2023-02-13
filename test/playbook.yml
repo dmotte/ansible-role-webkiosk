@@ -1,0 +1,11 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: Main play
+  hosts: all
+
+  tasks:
+    - name: Include the role from the parent directory
+      ansible.builtin.include_role: { name: "{{ playbook_dir | dirname }}" }
+      vars:
+        ansible_become: true
+        url: https://play.grafana.org/

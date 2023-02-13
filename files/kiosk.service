@@ -1,0 +1,23 @@
+[Unit]
+Description=startx on tty7
+
+# Disable unit start rate limiting
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+
+WorkingDirectory=/home/kioskuser
+ExecStartPre=/bin/chvt 7
+ExecStart=/bin/su -l kioskuser
+
+StandardInput=tty
+StandardOutput=tty
+StandardError=tty
+TTYPath=/dev/tty7
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=getty.target

@@ -1,0 +1,10 @@
+---
+- name: Issue systemctl daemon-reload to pick up config changes
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: Enable and restart the kiosk service
+  ansible.builtin.service:
+    name: kiosk
+    enabled: true
+    state: restarted

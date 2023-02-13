@@ -1,0 +1,30 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: webkiosk
+  author: dmotte
+  description: Ansible role to turn your Linux device into a web kiosk
+  license: MIT
+  min_ansible_version: "2.9"
+  platforms:
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - browser
+    - chromium
+    - debian
+    - display
+    - kiosk
+    - monitor
+    - pi
+    - raspberry
+    - raspbian
+    - raspi
+    - screen
+    - service
+    - systemd
+    - web
+    - webkiosk
+    - xorg

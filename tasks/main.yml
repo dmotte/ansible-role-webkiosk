@@ -1,0 +1,60 @@
+---
+- name: Execute apt update only if the last one is more than 1 hour ago
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Install Xorg without recommends
+  ansible.builtin.apt:
+    name: xorg
+    install_recommends: false
+
+- name: Install Xorg setuid wrapper
+  # This is needed to start Xorg as a non-root user. You can configure
+  # Xorg wrapper by editing the /etc/X11/Xwrapper.config file
+  ansible.builtin.apt:
+    name: xserver-xorg-legacy
+
+- name: Install Chromium
+  ansible.builtin.apt:
+    name: chromium
+    install_recommends: false
+
+- name: Create the kioskuser
+  ansible.builtin.user:
+    name: kioskuser
+    create_home: true
+
+- name: Create the kioskuser's .xinitrc file
+  ansible.builtin.template:
+    src: .xinitrc
+    dest: /home/kioskuser/.xinitrc
+    owner: kioskuser
+    group: kioskuser
+    mode: "0644"
+  notify:
+    - Enable and restart the kiosk service
+
+- name: Update the kioskuser's .profile file
+  ansible.builtin.blockinfile:
+    path: /home/kioskuser/.profile
+    block: |
+      # If $DISPLAY is not defined and I'm on TTY7
+      if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 7 ]; then
+          # Run startx replacing the current process
+          exec /usr/bin/startx
+      fi
+  notify:
+    - Enable and restart the kiosk service
+
+- name: Create the kiosk.service file
+  ansible.builtin.copy:
+    src: kiosk.service
+    dest: /etc/systemd/system/kiosk.service
+    mode: "0644"
+  notify:
+    - Issue systemctl daemon-reload to pick up config changes
+    - Enable and restart the kiosk service
+
+- name: Force all notified handlers to run at this point
+  ansible.builtin.meta: flush_handlers
