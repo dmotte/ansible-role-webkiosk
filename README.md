@@ -12,15 +12,7 @@ This role has been tested with **Debian 11** (_bullseye_).
 ## Usage
 
 1. Install this role using the `ansible-galaxy` CLI tool
-2. You can then include it into the `tasks` section of your _Ansible Playbook_ like this:
-
-   ```yaml
-   - name: Kiosk setup
-     ansible.builtin.include_role: { name: dmotte.webkiosk }
-     vars:
-       ansible_become: true
-       url: https://dmotte.github.io/
-   ```
+2. You can then include it into the `tasks` section of your _Ansible Playbook_. See [`test/playbook.yml`](test/playbook.yml) for an example of how to do that. Remember to replace the role name with `dmotte.webkiosk`.
 
 > **Note**: this role must be run as root (`ansible_become: true`).
 
