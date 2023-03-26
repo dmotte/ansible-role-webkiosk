@@ -18,9 +18,7 @@ This role has been tested with **Debian 11** (_bullseye_).
 
 ### Role variables
 
-| Variable | Description                             |
-| -------- | --------------------------------------- |
-| `url`    | URL of the web kiosk browser start page |
+See [`defaults/main.yml`](defaults/main.yml).
 
 ## Development
 
