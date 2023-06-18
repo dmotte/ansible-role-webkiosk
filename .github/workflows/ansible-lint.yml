@@ -15,13 +15,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up Python 3
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.x"
-
-      - name: Set up Ansible and Ansible Lint
-        run: pip3 install ansible ansible-lint
-
-      - name: Run Ansible Lint in strict mode
-        run: ansible-lint -s
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint-action@v6
