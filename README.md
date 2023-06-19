@@ -7,7 +7,7 @@ Ansible role to turn your _Linux_ device into a **web kiosk** (i.e. a device who
 
 :information_source: To make the system as lightweight as possible, only **Xorg** and a full-screen **Chromium** browser instance are started. **No window manager** needed! :slightly_smiling_face:
 
-This role has been tested with **Debian 11** (_bullseye_).
+This role has been tested with **Debian 12** (_bookworm_).
 
 ## Usage
 
