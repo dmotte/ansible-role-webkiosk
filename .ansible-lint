@@ -1,2 +1,4 @@
 ---
 strict: true
+exclude_paths:
+  - .github/

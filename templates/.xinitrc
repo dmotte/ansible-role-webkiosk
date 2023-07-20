@@ -36,4 +36,4 @@ chromium --kiosk \
     --no-first-run --start-fullscreen --disable-hang-monitor \
     --disable-infobars --disable-logging --disable-sync \
     --disable-settings-window \
-    '{{ url }}'
+    '{{ webkiosk_url }}'
