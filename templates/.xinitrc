@@ -5,8 +5,8 @@ set -e
 # Get display resolution
 
 DISPLAY_RESOLUTION="$(xrandr --current | grep '*' | uniq | awk '{print $1}')"
-DISPLAY_RES_W="$(echo $DISPLAY_RESOLUTION | cut -d 'x' -f1 | sed 's/[^0-9]*//g')"
-DISPLAY_RES_H="$(echo $DISPLAY_RESOLUTION | cut -d 'x' -f2 | sed 's/[^0-9]*//g')"
+DISPLAY_RES_W="$(echo $DISPLAY_RESOLUTION | cut -dx -f1 | sed 's/[^0-9]*//g')"
+DISPLAY_RES_H="$(echo $DISPLAY_RESOLUTION | cut -dx -f2 | sed 's/[^0-9]*//g')"
 
 # Disable Xorg screen blanking and DPMS
 
